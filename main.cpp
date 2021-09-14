@@ -12,8 +12,9 @@ int main() {
         std::string name;
         std::tm time;
     };
-
+    //Объявляем вектор векторов из пар день в месяце-имя. Номер вектора соответствует номеру месяца.
     std::vector<std::vector<std::pair<int, std::string>>> vectorBirthday;
+    //Заполняем пустыми векторами
     for(int i=0; i < 12; ++i){
         vectorBirthday.push_back(std::vector<std::pair<int, std::string>>());
     }
@@ -30,7 +31,7 @@ int main() {
     } while (true);
     t = std::time(nullptr);
     local = std::localtime(&t);
-
+    //Ищем ближайший номер вектора к текущему месяцу
 
     return 0;
 }
