@@ -15,25 +15,23 @@ int searchMonth(std::vector<std::vector<std::pair<int, std::string>>>& birthday,
     }
     return min;
 }
-std::vector<std::pair<int, std::string>> searchDay(std::vector<std::vector<std::pair<int, std::string>>>& birthday){
+std::vector<std::pair<int, std::string>> searchDay(std::vector<std::vector<std::pair<int, std::string>>>& birthday, int month){
     std::vector<std::pair<int, std::string>> newVector;
     std::time_t t;
     std::tm* local;
     t = std::time(nullptr);
     local = std::localtime(&t);
-    //Находим ближайшую запись в векторе к номеру текущего месяца
-    int minMonth = -1;
-    for(int i = local->tm_mon; i < 12; ++i){
-        if(!birthday.at(i).empty()){
-            minMonth = i - local->tm_mon;
-            break;
-        }
+    int minDay = 32;
+    for(int i = 0; i < birthday.at(month).size(); ++i){
+            if(birthday.at(month).at(i).first >= local->tm_mday) {
+                if((birthday.at(month).at(i).first - local->tm_mday) < minDay){
+                    minDay = birthday.at(month).at(i).first - local->tm_mday;
+                }
+            }
     }
-    //Если такая запись есть, то ищем ближайший день рождения
-    if(minMonth != -1){
-        int minDay = -1;
-        for(int i = 0; i < birthday.at(minMonth).size(); ++i){
+    if(minDay != 32){
+            //Добавляем все записи с этим днем в новый вектор
 
-        }
     }
+
 }

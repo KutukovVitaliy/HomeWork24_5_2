@@ -10,5 +10,5 @@
 #include <ctime>
 
 int searchMonth(std::vector<std::vector<std::pair<int, std::string>>>& birthday, int currentMonth);
-std::vector<std::pair<int, std::string>> searchDay(std::vector<std::vector<std::pair<int, std::string>>>& birthday);
+std::vector<std::pair<int, std::string>> searchDay(std::vector<std::vector<std::pair<int, std::string>>>& birthday, int month);
 #endif //HOMEWORK24_5_2_FUNCTIONS_H
