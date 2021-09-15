@@ -2,7 +2,7 @@
 #include <ctime>
 #include <iomanip>
 #include <vector>
-
+#include "functions.h"
 
 int main() {
     std::time_t t;
@@ -32,6 +32,9 @@ int main() {
     t = std::time(nullptr);
     local = std::localtime(&t);
     //Ищем ближайший номер вектора к текущему месяцу
+    if(int month = searchMonth(vectorBirthday, local->tm_mon) != -1){
+        //ищем ближайший день в найденном векторе
 
+    }
     return 0;
 }
