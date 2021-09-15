@@ -9,7 +9,7 @@ int searchMonth(std::vector<std::vector<std::pair<int, std::string>>>& birthday,
     int min = -1;
     for(int i = currentMonth; i < 12; ++i){
         if(!birthday.at(i).empty()){
-            min = i - currentMonth;
+            min = i;
             break;
         }
     }
@@ -30,8 +30,12 @@ std::vector<std::pair<int, std::string>> searchDay(std::vector<std::vector<std::
             }
     }
     if(minDay != 32){
-            //Добавляем все записи с этим днем в новый вектор
-
+        //Добавляем все записи с этим днем в новый вектор
+        for(int i = 0; i < birthday.at(month).size(); ++i){
+            if(birthday.at(month).at(i).first == (minDay + local->tm_mday)){
+                newVector.push_back(std::make_pair(birthday.at(month).at(i).first, birthday.at(month).at(i).second));
+            }
+        }
     }
-
+    return newVector;
 }
