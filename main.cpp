@@ -8,6 +8,7 @@ int main() {
     std::time_t t;
     std::string currentName;
     std::tm* local;
+    std::string nameMonth[12] = {" Jan", " Feb", " Mar", " Apr", " May", " Jun", " Jul", " Aug", " Sep", " Oct", " Nov", " Dec"};
     struct birthday{
         std::string name;
         std::tm time;
@@ -31,16 +32,23 @@ int main() {
     } while (true);
     t = std::time(nullptr);
     local = std::localtime(&t);
+    int month = searchMonth(vectorBirthday, local->tm_mon);
     //Ищем ближайший номер вектора к текущему месяцу
-    if(int month = searchMonth(vectorBirthday, local->tm_mon) != -1){
+    if(month  != -1){
         //ищем ближайший день в найденном векторе
         std::vector<std::pair<int, std::string>> day = searchDay(vectorBirthday, month);
         if(!day.empty()){
             for(auto el : day){
-                if(local->tm_mon == month && local->tm_mday == el.first) std:: cout << "Happy birthday dear " << el.second << std::endl;
-                else std::cout <<"The nearest birthday for " << el.second << " is " << el.first << " / " << month << std::endl;
+                if((local->tm_mon == month) && (local->tm_mday == el.first)) std:: cout << "Happy birthday dear " << el.second << std::endl;
+                else {
+                    std::cout <<"The nearest birthday for " << el.second << " is " << el.first << nameMonth[month]  << std::endl;
+                }
             }
         }
+
+    }
+    else{
+        std::cout << "There are no upcoming birthdays!" << std::endl;
     }
     return 0;
 }
